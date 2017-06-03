@@ -24,10 +24,12 @@ public class TodoApplication extends WebMvcConfigurerAdapter {
 		Todo todo = dao.selectById(1);
 		System.out.println(todo);
 		
+		/*
 		Todo todo2 = new Todo("네이버 Java", "김강산", 512);
 		Integer newId = dao.insert(todo2);
 		System.out.println(newId);
 		System.out.println(dao.selectById(newId));
+		*/
 		context.close();
 	}
 }
