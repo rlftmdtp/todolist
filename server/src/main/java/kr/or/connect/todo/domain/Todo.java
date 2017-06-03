@@ -39,6 +39,10 @@ public class Todo {
 		this.author = author;
 		this.pages = pages;
 	}
+	public Todo(Integer id,String title, String author, Integer pages) {
+		this(title, author, pages);
+		this.id = id;
+	}
 	
 	// 속성값 확인용
 	@Override
