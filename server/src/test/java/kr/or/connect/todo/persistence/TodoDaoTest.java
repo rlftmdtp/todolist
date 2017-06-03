@@ -32,5 +32,35 @@ public class TodoDaoTest {
 		System.out.println(selected);
 		assertThat(selected.getTitle(), is("Java 웹개발"));
 	}
+	
+	@Test
+	public void shouldDelete() {
+		// given
+		Todo todo = new Todo("네이버 자바", "네이버", 142);
+		Integer id = dao.insert(todo);
+
+		// when
+		int affected = dao.deleteById(id);
+
+		// Then
+		assertThat(affected, is(1));
+	}
+	
+	@Test
+	public void shouldUpdate() {
+		// Given
+		Todo todo = new Todo("네이버 자바", "네이버", 142);
+		Integer id = dao.insert(todo);
+
+		// When
+		todo.setId(id);
+		todo.setTitle("네이버 자바2");
+		int affected = dao.update(todo);
+
+		// Then
+		assertThat(affected, is(1));
+		Todo updated = dao.selectById(id);
+		assertThat(updated.getTitle(), is("네이버 자바2"));
+	}
 
 }
