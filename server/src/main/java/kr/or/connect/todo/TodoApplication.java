@@ -14,6 +14,7 @@ public class TodoApplication extends WebMvcConfigurerAdapter {
 	public static void main(String[] args) {
 		SpringApplication.run(TodoApplication.class, args);
 		
+		/*
 		// AppConfig 활용
 		ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		TodoDao dao = context.getBean(TodoDao.class); // Bean이나 Repository으로 등록됨
@@ -25,12 +26,13 @@ public class TodoApplication extends WebMvcConfigurerAdapter {
 		System.out.println(todo);
 		
 		
-		/* 추가 테스트
+		추가 테스트
 		Todo todo2 = new Todo("네이버 Java", "김강산", 512);
 		Integer newId = dao.insert(todo2);
 		System.out.println(newId);
 		System.out.println(dao.selectById(newId));
-		*/
+		
 		context.close();
+		*/
 	}
 }

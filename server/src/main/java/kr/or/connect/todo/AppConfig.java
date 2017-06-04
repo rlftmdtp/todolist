@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@ComponentScan("kr.or.connect.todo.persistence") // bean 등록 대상 클래스를 찾는다
+@ComponentScan("kr.or.connect.todo.*") // bean 등록 대상 클래스를 찾는다
 @PropertySource("application.properties") // application.properties에서 참조한 값으로 대체
 public class AppConfig {
 	
