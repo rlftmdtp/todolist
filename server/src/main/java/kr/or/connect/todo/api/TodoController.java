@@ -36,4 +36,10 @@ public class TodoController {
 		return service.findById(id);
 	}
 	
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	Todo create(@RequestBody Todo todo) {
+		return service.create(todo);
+	}
+
 }

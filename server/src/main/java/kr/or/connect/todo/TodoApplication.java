@@ -26,7 +26,7 @@ public class TodoApplication extends WebMvcConfigurerAdapter {
 		System.out.println(todo);
 		
 		
-		추가 테스트
+		//추가 테스트
 		Todo todo2 = new Todo("네이버 Java", "김강산", 512);
 		Integer newId = dao.insert(todo2);
 		System.out.println(newId);
