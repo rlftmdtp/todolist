@@ -2,11 +2,17 @@ package kr.or.connect.todo.api;
 
 import java.util.Collection;
 
-import org.springframework.http.HttpStatus; // ...
+// 로깅추가
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,30 +22,53 @@ import kr.or.connect.todo.domain.Todo;
 import kr.or.connect.todo.service.TodoService;
 
 @RestController
-@RequestMapping("/api/books") // 공퉁 부분 선언  추후 books 부분 변경해야함
+@RequestMapping("/api/todos") // 공퉁 부분 선언
 public class TodoController {
 
 	private final TodoService service;
+	private final Logger log = LoggerFactory.getLogger(TodoController.class);
 
 	@Autowired
 	public TodoController(TodoService service) {
 		this.service = service;
 	}
-	
+
+	// 해당 주소에 해당하는 메소드를 호출해서 결과값 반환 (/api/todos 포함)
 	@GetMapping
 	Collection<Todo> readList() {
 		return service.findAll();
 	}
 
+	// ID에 해당하는 DB정보 찾아오기
 	@GetMapping("/{id}")
-	Todo read(@PathVariable  Integer id) {
+	Todo read(@PathVariable Integer id) {
 		return service.findById(id);
 	}
 	
+	// 생성
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	Todo create(@RequestBody Todo todo) {
-		return service.create(todo);
+		Todo newTodo = service.create(todo);
+		log.info("Todo created : {}", newTodo);
+		return todo;
+	}
+	
+	// 수정
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	void update(@PathVariable Integer id, @RequestBody Todo todo) {
+		todo.setId(id);
+		service.update(todo);
+		log.info("Todo update : {}", id);
+	}
+	
+	// 삭제
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	void delete(@PathVariable Integer id) {
+		service.delete(id);
+		log.info("Todo delete : {}", id);
 	}
 
 }

@@ -1,52 +1,68 @@
 package kr.or.connect.todo.domain;
 
+import java.sql.Timestamp;
+
 public class Todo {
-	// 추후 Todo에 알맞게 변경해야한다
-	private Integer id;
-	private String author;
-	private String title;
-	private Integer pages;
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public Integer getPages() {
-		return pages;
-	}
-	public void setPages(Integer pages) {
-		this.pages = pages;
-	}
-	
-	public Todo(){}	// 디폴트 생성자
-	// 추후 todo테이블에 맞춰서 변경
-	public Todo(String title, String author, Integer pages) {
-		this.title = title;
-		this.author = author;
-		this.pages = pages;
-	}
-	public Todo(Integer id,String title, String author, Integer pages) {
-		this(title, author, pages);
-		this.id = id;
-	}
-	
-	// 속성값 확인용
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", pages=" + pages + "]";
-	}
+	 private Integer id;
+	    private String todo;
+	    private Integer completed = 0;
+	    private Timestamp date;
+
+	    public Integer getId() {
+	        return id;
+	    }
+
+	    public void setId(Integer id) {
+	        this.id = id;
+	    }
+
+	    public String getTodo() {
+	        return todo;
+	    }
+
+	    public void setTodo(String todo) {
+	        this.todo = todo;
+	    }
+
+	    public Integer getCompleted() {
+	        return completed;
+	    }
+
+	    public void setCompleted(Integer completed) {
+	        this.completed = completed;
+	    }
+
+	    public Timestamp getDate() {
+	        return date;
+	    }
+
+	    public void setDate(Timestamp date) {
+	        this.date = date;
+	    }
+	    
+	    // 속성값 확인용
+	    @Override
+	    public String toString() {
+	        return "Todo{" +
+	                "id=" + id +
+	                ", todo='" + todo + '\'' +
+	                ", completed=" + completed +
+	                ", date=" + date +
+	                '}';
+	    }
+	    
+	    // 기본생성자
+	    public Todo(){}
+	 
+	    public Todo(String todo, Integer completed, Timestamp date) {
+	        this.todo = todo;
+	        this.completed = completed;
+	        this.date = date;
+	    }
+	    
+	    public Todo(String todo, Timestamp date){
+	    	this.todo = todo;
+	    	this.date = date;
+	    }
+
 }
